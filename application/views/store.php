@@ -1,6 +1,6 @@
  
   <div class="content-wrapper"> 
-  <div class="col-md-12">
+	<div class="col-md-12">
             <div class="card card-widget widget-user">
                 <div class="widget-user-header text-white" style="border-radius:0px; min-height:350px; background: url('<?php echo base_url();?>assets/dist/img/photo1.png') center center;">
                 </div>
@@ -16,31 +16,45 @@
                 </div>
             </div>
         </div>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Products</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-primary btn-sm">Add Product</button>
-                        </div>
-                    </div> 
-                    <div class="card-body">
-                        <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                            <span class="username">
-                                <a href="#">Jonathan Burke Jr.</a>
-                                <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                            </span>
-                            <span class="description">Shared publicly - 7:30 PM today</span>
-                        </div>
-                    </div> 
-                </div> 
-          </div> 
-        </div> 
-      </div> 
-    </section> 
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card card-primary card-outline card-outline-tabs">
+							<div class="card-header p-0 border-bottom-0">
+								<ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" id="products-tab" data-toggle="pill" href="#products" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Products</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="about-tab" data-toggle="pill" href="#about" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">About</a>
+									</li>
+								</ul>
+							</div>
+							<div class="card-body">
+								<div class="tab-content" id="custom-tabs-four-tabContent">
+									<div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
+										<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+											<div class="card">
+												<div class="item-zoom">
+													<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/photo2.png">
+												</div>
+												<div class="card-body">
+													<h5 class="description-header text-center text-success text-bold">Red Onion 1kg</h5>
+													<h5 class="description-header text-center text-success">₱200.00</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+										
+									</div>
+								</div>
+							</div>
+						  <!-- /.card -->
+						</div>
+					</div>
+				</div> 
+			</div> 
+		</section> 
   </div> 

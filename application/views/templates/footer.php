@@ -2,9 +2,9 @@
 <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      MBA | v1.0.0.0
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2021 <a href="http://ilocos.da.gov.ph">Department of Agriculture Regional Field Office 1</a>.</strong> All rights reserved.
     
   </footer>

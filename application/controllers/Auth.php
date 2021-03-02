@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Products extends CI_Controller {
+class Auth extends CI_Controller {
 
 	public function __construct()
 	{
@@ -11,16 +11,7 @@ class Products extends CI_Controller {
 
 	public function index()
 	{
-        $data["current_page"] = "products";
-        $data["title"] = "Products";
-
-		$this->load->view('templates/styles');
-		$this->load->view('templates/header');
-		$this->load->view('templates/topbar');
-		$this->load->view('templates/sidebar',$data);
-		$this->load->view('login',$data);
-		$this->load->view('templates/footer');
-		$this->load->view('templates/scripts');
+		$this->load->view('login');
 	}
 
     public function register()

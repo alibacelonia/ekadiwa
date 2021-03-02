@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2021 at 02:03 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.3.19
+-- Generation Time: Mar 03, 2021 at 12:52 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,10 +30,11 @@ USE `ilocosekadiwa`;
 --
 
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
@@ -57,15 +58,16 @@ INSERT INTO `category` (`id`, `name`) VALUES
 --
 
 DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `commodity` varchar(255) NOT NULL,
   `category` int(10) NOT NULL,
   `price` double NOT NULL,
   `instock` int(10) NOT NULL,
   `ownerid` int(10) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `date_updated` datetime NOT NULL
+  `date_updated` datetime NOT NULL,
+  KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -75,15 +77,24 @@ CREATE TABLE `products` (
 --
 
 DROP TABLE IF EXISTS `store`;
-CREATE TABLE `store` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `store` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
   `owner` int(10) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `status` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` varchar(10) NOT NULL,
+  `about` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `store`
+--
+
+INSERT INTO `store` (`id`, `name`, `location`, `owner`, `phone`, `email`, `status`, `about`) VALUES
+(1, 'John Escat Dressing Plant', 'Carcarabasa, San Gabriel, La Union', 1, '+639129940219', 'johnescat19@gmail.com', 'A', 'Poultry Farm');
 
 -- --------------------------------------------------------
 
@@ -92,13 +103,21 @@ CREATE TABLE `store` (
 --
 
 DROP TABLE IF EXISTS `sysuser`;
-CREATE TABLE `sysuser` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `sysuser` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `status` int(10) NOT NULL,
-  `type` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` varchar(10) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sysuser`
+--
+
+INSERT INTO `sysuser` (`id`, `username`, `password`, `status`, `type`) VALUES
+(1, 'johnescat19', 'johnescat19', 'A', 'V');
 
 -- --------------------------------------------------------
 
@@ -107,8 +126,8 @@ CREATE TABLE `sysuser` (
 --
 
 DROP TABLE IF EXISTS `userinfo`;
-CREATE TABLE `userinfo` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `userinfo` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `firstname` varchar(100) NOT NULL,
   `middlename` varchar(100) DEFAULT NULL,
   `lastname` varchar(100) NOT NULL,
@@ -117,76 +136,16 @@ CREATE TABLE `userinfo` (
   `email` varchar(50) NOT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `date_updated` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date_updated` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `userinfo`
 --
 
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `store`
---
-ALTER TABLE `store`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sysuser`
---
-ALTER TABLE `sysuser`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `userinfo`
---
-ALTER TABLE `userinfo`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `store`
---
-ALTER TABLE `store`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sysuser`
---
-ALTER TABLE `sysuser`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `userinfo`
---
-ALTER TABLE `userinfo`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+INSERT INTO `userinfo` (`id`, `firstname`, `middlename`, `lastname`, `birthdate`, `phone`, `email`, `gender`, `date_created`, `date_updated`) VALUES
+(1, 'John', NULL, 'Escat', NULL, '+639129940219', 'johnescat19@gmail.com', NULL, '2021-03-02 23:30:27', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

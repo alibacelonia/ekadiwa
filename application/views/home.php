@@ -8,7 +8,7 @@
 <title>AdminLTE 3 | Top Navigation</title>
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:300,400,400i,700" rel="stylesheet">
 <style>
@@ -93,16 +93,16 @@
 		<div class="collapse navbar-collapse order-1" id="navbarCollapse">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Home</a>
+					<a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Shop</a>
+					<a class="nav-link" href="<?php echo base_url();?>store">Shop</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link btn bg-warning " href="#">Become a vendor</a>
+					<a class="nav-link btn btn-warning text-light register_as_vendor" href="#" >Become a vendor</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " href="#">Login/Register</a>
+					<a class="nav-link " href="<?php echo base_url();?>auth">Login/Register</a>
 				</li>
 			</ul>
 
@@ -234,5 +234,27 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+$(".register_as_vendor").click(function(){
+	const Toast = Swal.mixin({
+	  toast: true,
+	  position: 'top',
+	  showConfirmButton: false,
+	  timer: 2000,
+	  timerProgressBar: true,
+	  didOpen: (toast) => {
+		toast.addEventListener('mouseenter', Swal.stopTimer)
+		toast.addEventListener('mouseleave', Swal.resumeTimer)
+	  }
+	})
+
+	Toast.fire({
+	  icon: 'error',
+	  title: 'This feature is disabled by the administrator.'
+	})
+});
+
+</script>
 </body>
 </html>

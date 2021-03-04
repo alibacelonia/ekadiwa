@@ -37,7 +37,10 @@
 	background-position: top center;
 	background-size: cover;
 }
-
+.error-wrapper{
+	
+  max-width:300px;
+}
 </style>
 </head>
 <body class="hold-transition layout-top-nav">
@@ -45,7 +48,7 @@
 
 	<nav class="main-header navbar navbar-expand-md navbar-success navbar-dark">
     <div class="container-fluid">
-		<a href="<?php echo base_url(); ?>assets/index3.html" class="navbar-brand">
+		<a href="<?php echo base_url(); ?>" class="navbar-brand">
 			<img src="<?php echo base_url(); ?>assets/dist/img/DALogo.png" alt="DA Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
         <span class="brand-text font-weight-light">eKadiwa ni Ani at Kita</span>
@@ -59,16 +62,16 @@
 		<div class="collapse navbar-collapse order-1" id="navbarCollapse">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Home</a>
+					<a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Shop</a>
+					<a class="nav-link" href="<?php echo base_url();?>store">Shop</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link btn bg-warning " href="#">Become a vendor</a>
+					<a class="nav-link btn bg-warning register_as_vendor" href="#" >Become a vendor</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " href="#">Login/Register</a>
+					<a class="nav-link " href="<?php echo base_url();?>auth">Login/Register</a>
 				</li>
 			</ul>
 
@@ -105,21 +108,23 @@
 							<?php
 								if($this->session->flashdata('error')){
 									?>
-									
-									<div class="alert alert-danger alert-dismissible">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-										<h5><i class="icon fas fa-ban"></i> Error!</h5>
-										<?php echo $this->session->flashdata('error'); ?>
-									</div>
-									<?php
-								}
-								if($this->session->flashdata('success')){
-									?>
-									
-									<div class="alert alert-success alert-dismissible">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-										<h5><i class="icon fas fa-check"></i><?php echo $user["firstname"]; ?> </h5>
-										<?php echo $this->session->flashdata('success'); ?>
+									<div class="row">
+										<div class="col-12">
+											<div class="alert error-wrapper card bg-danger">
+												<div class="card-header p-0">
+													<h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Oops!</h3>
+
+													<div class="card-tools">
+														<button type="button" class="btn btn-tool" data-dismiss="alert" aria-hidden="true">
+															<i class="fas fa-times"></i>
+														</button>
+													</div>
+												</div>
+												<div class="card-body p-0">
+													<span><?php echo $this->session->flashdata('error'); ?></span>
+												</div>
+											</div>
+										</div>
 									</div>
 									<?php
 								}
@@ -198,5 +203,27 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+$(".register_as_vendor").click(function(){
+	const Toast = Swal.mixin({
+	  toast: true,
+	  position: 'top',
+	  showConfirmButton: false,
+	  timer: 2000,
+	  timerProgressBar: true,
+	  didOpen: (toast) => {
+		toast.addEventListener('mouseenter', Swal.stopTimer)
+		toast.addEventListener('mouseleave', Swal.resumeTimer)
+	  }
+	})
+
+	Toast.fire({
+	  icon: 'error',
+	  title: 'This feature is disabled by the administrator.'
+	})
+});
+
+</script>
 </body>
 </html>

@@ -151,47 +151,75 @@
 						</div>
 					</div>
 					<div class="col-lg-8 col-12">
-						<h3 class="cat-title pl-3 pt-2 pb-2">Stores</h3>
+						<h3 class="cat-title pl-3 pt-2 pb-2">Products</h3>
 						<div class="row">
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 								<div class="card">
 									<div class="item-zoom">
-										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/photo2.png">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/1.png">
 									</div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 								<div class="card">
 									<div class="item-zoom">
-										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/photo2.png">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/2.png">
 									</div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 								<div class="card">
 									<div class="item-zoom">
-										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/photo2.png">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/3.png">
 									</div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 								<div class="card">
 									<div class="item-zoom">
-										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/photo2.png">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/4.png">
 									</div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 								<div class="card">
 									<div class="item-zoom">
-										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/photo2.png">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/5.png">
 									</div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 								<div class="card">
 									<div class="item-zoom">
-										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/photo2.png">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/6.png">
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="card">
+									<div class="item-zoom">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/7.png">
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="card">
+									<div class="item-zoom">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/8.png">
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="card">
+									<div class="item-zoom">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/9.png">
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="card">
+									<div class="item-zoom">
+										<img class="img-fluid" src="<?php echo base_url();?>assets/dist/img/store/10.png">
 									</div>
 								</div>
 							</div>

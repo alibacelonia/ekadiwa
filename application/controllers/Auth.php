@@ -12,41 +12,58 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
+		$data["title"] = "Login";
+		$data["current_page"] = "login";
 		$session_data = $this->session->userdata('user');
 		if(isset($session_data)){
 			redirect(base_url()."home/my_account");
 		}
 		else{
+			$this->load->view('user_template/head',$data);
+			$this->load->view('user_template/style');
+			$this->load->view('user_template/navbar',$data);
 			$this->load->view('login');
+			$this->load->view('user_template/footer');
+			$this->load->view('user_template/scripts');
 		}
 	}
 
     public function register()
 	{
-        $data["current_page"] = "products";
-        $data["title"] = "Products";
-
-		$this->load->view('templates/styles');
-		$this->load->view('templates/header');
-		$this->load->view('templates/topbar');
-		$this->load->view('templates/sidebar',$data);
-		$this->load->view('register',$data);
-		$this->load->view('templates/footer');
-		$this->load->view('templates/scripts');
+		$data["title"] = "Register";
+		$data["current_page"] = "register";
+		$session_data = $this->session->userdata('user');
+		if(isset($session_data)){
+			redirect(base_url()."home/my_account");
+		}
+		else{
+			
+			$this->load->view('user_template/head',$data);
+			$this->load->view('user_template/style');
+			$this->load->view('user_template/navbar',$data);
+			$this->load->view('register');
+			$this->load->view('user_template/footer');
+			$this->load->view('user_template/scripts');
+		}
 	}
 
     public function register_as_seller()
 	{
-        $data["current_page"] = "products";
-        $data["title"] = "Products";
-
-		$this->load->view('templates/styles');
-		$this->load->view('templates/header');
-		$this->load->view('templates/topbar');
-		$this->load->view('templates/sidebar',$data);
-		$this->load->view('register_as_seller',$data);
-		$this->load->view('templates/footer');
-		$this->load->view('templates/scripts');
+			
+		$data["title"] = "Register As Vendor";
+		$data["current_page"] = "register_as_vendor";
+        $session_data = $this->session->userdata('user');
+		if(isset($session_data)){
+			redirect(base_url()."home/my_account");
+		}
+		else{
+			$this->load->view('user_template/head',$data);
+			$this->load->view('user_template/style');
+			$this->load->view('user_template/navbar',$data);
+			$this->load->view('register_as_vendor');
+			$this->load->view('user_template/footer');
+			$this->load->view('user_template/scripts');
+		}
 	}
 	
 	public function do_login()
@@ -75,4 +92,10 @@ class Auth extends CI_Controller {
 			$this->session->set_flashdata('error','Incorrect username or password.');
 		}
 	}
+	
+	 
+	public function logout(){
+		$this->session->unset_userdata('user');
+		redirect(base_url().$this->index());
+	}    
 }

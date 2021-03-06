@@ -18,5 +18,13 @@ class User_Model extends CI_Model{
 		return $result;
     }
 	
+	public function save_user_changes($id,$data)
+    {
+		
+		$this->db->where('id', $id);
+		$this->db->update('users',$data);
+		return $result;
+    }
+	
 	
 }

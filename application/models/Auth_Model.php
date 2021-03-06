@@ -15,11 +15,16 @@ class Auth_Model extends CI_Model{
 						->where('username', $username)
 						->or_where('email',$username)
 				->group_end()
-				->where('password',$password)
 		->get();
 		
 		$result = $query->row_array();
-		return $result;
+
+		if(password_verify($password,$result['password'])){
+			return $result;
+		}
+		else{
+			return null;
+		}
     }
 	
 	

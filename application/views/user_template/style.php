@@ -67,7 +67,11 @@
 }
 
 .cat-title{
-	font-weight:600;
+  font-family:'Roboto';
+}
+
+.all-caps{
+	text-transform: uppercase;
 }
 
 @media (max-width: 576px) {
@@ -94,13 +98,11 @@
   }
 }
 
-
-
 .item-zoom {
 	position: relative;
 	overflow: hidden;
-	min-height: 200px;
-	max-height: 200px;
+	min-height: 200px !important;
+	max-height: 200px !important;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -109,6 +111,8 @@
 .item-zoom img {
 	vertical-align: top;
 	max-width: 100%;
+	min-height: 200px !important;
+	max-height: 200px !important;
 	-moz-transition: all 0.3s;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;

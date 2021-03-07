@@ -3,7 +3,6 @@
 .content,.content-wrapper{
 	background-color:transparent;
 }
-
 </style>
 <div class="content-wrapper  main-content">
   
@@ -68,8 +67,8 @@
 							</form>
 							<br>
 							<p class="mb-1 register_as_vendor"> <a href="#">I forgot my password</a> </p>
-							<p class="mb-0 register_as_vendor">
-								<a href="#" class="text-center">Register a new membership</a>
+							<p class="mb-0">
+								Don't have an account? <a href="<?php echo base_url(); ?>auth/register">Register </a>
 							</p>
 						</div>
 					</div>

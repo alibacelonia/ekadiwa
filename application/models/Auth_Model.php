@@ -25,6 +25,21 @@ class Auth_Model extends CI_Model{
 		else{
 			return null;
 		}
+	}
+	
+	public function check_if_exists($username, $email)
+    {
+		
+		$query = $this->db->select('*')
+				->from('users')
+				->group_start()
+						->where('username', $username)
+						->or_where('email',$email)
+				->group_end()
+		->get();
+		
+		$result = $query->row_array();
+		return $result;
     }
 	
 	

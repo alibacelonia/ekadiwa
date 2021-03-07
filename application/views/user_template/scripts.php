@@ -5,18 +5,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 $(document).ready(function(){
-	$(".store-carousel").owlCarousel({
-		items: parseInt(<?php echo $store_count;?>) >= 4 ? 4 : parseInt(<?php echo $store_count;?>),
-		itemsDesktop: [1400, 3],//1400:screen size, 3: number if items in the slide
-		itemsDesktopSmall: [1100, 2],
-		itemsTablet: [700, 1],
-		itemsMobile: [500, 1],
-		margin:12,
-		loop: parseInt(<?php echo $store_count;?>) >= 4,
-		autoplay:true,
-		dots:false,
-		autoplayTimeout:4500
-	});
 	$(".karne-carousel").owlCarousel({
 		items: 4,
 		itemsDesktop: [1400, 3],//1400:screen size, 3: number if items in the slide

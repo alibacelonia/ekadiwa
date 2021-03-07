@@ -1,48 +1,94 @@
 <style>
+/* Store CSS */
 
-@media (min-width: 576px) {
-  .div-category {
-    display:none;
-  }
-  .store-item {
-    -ms-flex: 0 0 16.666667%;
-    flex: 0 0 16.666667%;
-    max-width: 16.666667%;
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+
+.container {
+  margin: 0 auto;
+}
+
+.grid-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.grid-item {
+    height: 250px;
+    flex-basis: 20%;
+    -ms-flex: auto;
+    width: 259px;
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.grid-row a {
+  text-decoration: none;
+}
+
+.wrapping-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  color: currentColor;
+}
+
+.grid-item-wrapper {
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: initial;
+    background-color:#fff;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-transition: padding 0.15s cubic-bezier(0.4,0,0.2,1), margin 0.15s cubic-bezier(0.4,0,0.2,1), box-shadow 0.15s cubic-bezier(0.4,0,0.2,1);
+    transition: padding 0.15s cubic-bezier(0.4,0,0.2,1), margin 0.15s cubic-bezier(0.4,0,0.2,1), box-shadow 0.15s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+}
+
+.grid-item-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.grid-image-top {
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: -10.5%;
+  top: -4.5%;
+}
+
+
+@media(max-width: 1333px) {
+  .grid-item {
+    flex-basis: 33.33%;
   }
 }
 
-@media (min-width: 768px) {
-  .div-category {
-    display:none;
-  }
-  
-  .store-item {
-    -ms-flex: 0 0 16.666667%;
-    flex: 0 0 16.666667%;
-    max-width: 16.666667%;
+@media(max-width: 1073px) {
+   .grid-item {
+    flex-basis: 33.33%;
   }
 }
 
-@media (min-width: 992px) {
-  .div-category {
-    display:block;
-  }
-  .store-item {
-    -ms-flex: 0 0 16.666667%;
-    flex: 0 0 16.666667%;
-    max-width: 16.666667%;
+@media(max-width: 815px) {
+  .grid-item {
+    flex-basis: 50%;
   }
 }
 
-@media (min-width: 1200px) {
-  .div-category {
-    display:block;
+@media(max-width: 555px) {
+  .grid-item {
+    flex-basis: 100%;
   }
-  .store-item {
-    -ms-flex: 0 0 16.666667%;
-    flex: 0 0 16.666667%;
-    max-width: 16.666667%;
-}
 }
 
 </style>
@@ -63,25 +109,25 @@
 					</div>
 				</div>
 			</div>
-			<div class="container">
-			<div class="row">
-				<div class="store-carousel owl-carousel owl-theme owl-dots-inner">
+			<div class="container mb-5 mt-3">
+				<div class="grid-row">
 					<?php
-					foreach($stores as $store){
+						foreach($stores as $store){
 					?>
-					<a href="<?php echo base_url()."store/details/".$store['id']; ?>">
-						<div class="card ">
-							<div class="store-item">
-								<img class="img-fluid row-cols-3" src="<?php echo $store['img_path']; ?>" alt="Alcala Onion Growers MPC">
+							
+						<div class="grid-item">
+							<a class="wrapping-link" href="<?php echo base_url()."store/details/".$store['id']; ?>"></a>
+							<div class="grid-item-wrapper">
+								<div class="grid-item-container">
+									<div class="grid-image-top rex-ray" style="background-image:url(<?php echo $store['img_path'];?>);"></div>
+								</div>
 							</div>
 						</div>
-					</a>
 					
 					<?php
-					}
+						}
 					?>
-					</div>
-			</div>
+				</div>
 			</div>
 		</div>
 		<!-- /.content -->

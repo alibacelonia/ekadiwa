@@ -23,8 +23,6 @@ class Home extends CI_Controller {
 			$data["current_page"] = "home";
 			$data["title"] = "Home";
 			$data['user_details'] = $this->user->get_user_details(array("id"=>$session_data['id']));
-			//var_dump($data);
-
 			
 			$this->load->view('user_template/head',$data);
 			$this->load->view('user_template/style');
@@ -46,11 +44,11 @@ class Home extends CI_Controller {
 			$this->load->view('user_template/scripts',$data);
 		}
 	}
-	public function my_account()
+	public function myaccount()
 	{ 
 		$session_data = $this->session->userdata('user');
 		if(isset($session_data)){
-			$data["current_page"] = "my_account";
+			$data["current_page"] = "myaccount";
 			$data["title"] = "My Account";
 			$data['user_details'] = $this->user->get_user_details(array("id"=>$session_data['id']));
 			$this->load->view('user_template/head',$data);
@@ -58,7 +56,7 @@ class Home extends CI_Controller {
 			$this->load->view('user_template/navbar',$data);
 			$this->load->view('user/myaccount',$data);
 			$this->load->view('user_template/footer');
-			$this->load->view('user_template/scripts');
+			$this->load->view('user_template/scripts',$data);
 		}
 		else{
 			redirect(base_url()."auth");
@@ -72,6 +70,8 @@ class Home extends CI_Controller {
 			$data["current_page"] = "mystore";
 			$data["title"] = "My Store";
 			$data['user_details'] = $this->user->get_user_details(array("id"=>$session_data['id']));
+			$data['store_details'] = $this->store->get_my_store_details(array("id"=>$session_data['id']));
+			$data['store_products'] = $this->product->get_my_store_products(array("id"=>$session_data['id']));
 			$this->load->view('user_template/head',$data);
 			$this->load->view('user_template/style');
 			$this->load->view('user_template/navbar',$data);
@@ -108,12 +108,67 @@ class Home extends CI_Controller {
 					'birthdate' => $birthdate
 				);
 		$this->user->save_user_changes($session_data['id'], $data);
-		if($current_password == "" && $new_password == "" && $confirm_password == ""){
+		header('location:'.base_url()."home/myaccount");
+		$this->session->set_flashdata('user_success','Account successfully updated.');
+	}
+
+	public function change_password(){
+		
+		$session_data = $this->session->userdata('user');
+		$password = $this->input->post('current_password');
+		$new_password = $this->input->post('new_password');
+		$confirm_password = $this->input->post('confirm_password');
+		
+		$user = $this->user->get_user_details(array("id"=>$session_data['id']));
+
+		if(password_verify($password,$user['password']) && $new_password == $confirm_password){
+			$data = array(
+				'password' => password_hash($new_password,PASSWORD_BCRYPT)
+			);
+			//var_dump($data);
 			$this->user->save_user_changes($session_data['id'], $data);
-			header('location:'.base_url()."home/my_account".$this->index());
+			header('location:'.base_url()."home/myaccount");
+			$this->session->set_flashdata('password_success','You successfully changed your password.');
 		}
 		else{
-			
+			if(!password_verify($password,$user['password'])){
+				header('location:'.base_url()."home/myaccount");
+				$this->session->set_flashdata('password_error','Incorrect password. Please try again.');
+			}
+			else if($new_password != $confirm_password){
+				header('location:'.base_url()."home/myaccount");
+				$this->session->set_flashdata('password_error','Password does not match.');
+			}
+			else if(strlen($new_password) <=5){
+				header('location:'.base_url()."home/myaccount");
+				$this->session->set_flashdata('password_error','Password must atleast 6 characters.');
+			}
 		}
+	}
+
+	public function save_about()
+	{
+		
+		$session_data = $this->session->userdata('user');
+		$about = $this->input->post('about');
+		
+		$data = array(
+					'about' => $about
+				);
+		$this->store->save_store_changes($session_data['id'], $data);
+		header('location:'.base_url()."home/mystore".$this->index());
+	}
+
+	public function save_policy()
+	{
+		
+		$session_data = $this->session->userdata('user');
+		$policy = $this->input->post('policy');
+		
+		$data = array(
+					'policy' => $policy
+				);
+		$this->store->save_store_changes($session_data['id'], $data);
+		header('location:'.base_url()."home/mystore".$this->index());
 	}
 }

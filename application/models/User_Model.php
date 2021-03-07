@@ -20,11 +20,14 @@ class User_Model extends CI_Model{
 	
 	public function save_user_changes($id,$data)
     {
-		
 		$this->db->where('id', $id);
 		$this->db->update('users',$data);
 		return $result;
+	}
+	
+	public function register_user($data)
+    {
+		$this->db->insert('users', $data);
+		return array("message"=>"success");
     }
-	
-	
 }

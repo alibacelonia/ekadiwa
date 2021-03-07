@@ -4,17 +4,17 @@
 			<div class="container-fluid p-0">
 				<div class="row">
 					<div class="subheader col-12 pt-5 pb-5">
-						<h1 class="text-center text-secondary">My Account</h1>
+						<h1 class="cat-title text-center text-secondary"><?php echo $title; ?></h1>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="content">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-3 mt-5">
-						<a href="<?php echo base_url(); ?>home/my_account">
-							<div class="sidebar-item active">
+					<div class="col-lg-3 mt-2">
+						<a href="<?php echo base_url(); ?>home/myaccount">
+							<div class="sidebar-item <?php echo $current_page == "myaccount" ? "active" : "";  ?>">
 								<span >Account Details</span>
 							</div>
 						</a>
@@ -22,7 +22,7 @@
 						if($user_details['type'] == "V"){
 						?>
 						<a href="<?php echo base_url(); ?>home/mystore">
-							<div class="sidebar-item">
+							<div class="sidebar-item <?php echo $current_page == "mystore" ? "active" : "";  ?>">
 								<span >My Store</span>
 							</div>
 						</a>
@@ -36,9 +36,42 @@
 						</a>
 					</div>
 					
-					<div class="col-lg-9 mt-5 mb-5">
-						<form action="<?php echo base_url();?>home/save_changes" method="post">
+					<div class="col-lg-9 mt-2 mb-5">
+						<form action="<?php echo base_url();?>home/save_changes" method="post" class="mb-5">
+						<?php
+									if($this->session->flashdata('user_success')){
+										?>
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="alert card bg-success">
+													<div class="card-header p-0">
+														<h3 class="card-title"><i class="fas fa-check-circle"></i> Alert</h3>
+														<div class="card-tools">
+															<button type="button" class="btn btn-tool" data-dismiss="alert" aria-hidden="true">
+																<i class="fas fa-times"></i>
+															</button>
+														</div>
+													</div>
+													<div class="card-body p-0">
+														<span><?php echo $this->session->flashdata('user_success'); ?></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<?php
+									}
+								?>
 							<div class="row">
+								<div class="col-sm-12">
+									<label class="cat-title all-caps">Personal Info</label>
+								</div>
+								
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>Email<sup class="text-danger">*</sup></label>
+										<input type="text" class="form-control" placeholder="" name="email" readonly value="<?php echo $user_details['email']; ?>">
+									</div>
+								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label>First Name <sup class="text-danger">*</sup></label>
@@ -82,22 +115,79 @@
 										<label>Phone <sup class="text-danger">*</sup></label>
 										<input type="text" class="form-control" placeholder="" name="phone" required value="<?php echo $user_details['phone']; ?>">
 									</div>
+									
+									<button type="submit" class="btn btn-flat btn-success">Save Changes</button>
+								</div>
+							</div>
+						</form>
+
+						<form method="post" action="<?php echo base_url(); ?>home/change_password">
+								<?php
+									if($this->session->flashdata('password_error')){
+										?>
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="alert card bg-danger">
+													<div class="card-header p-0">
+														<h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Alert</h3>
+
+														<div class="card-tools">
+															<button type="button" class="btn btn-tool" data-dismiss="alert" aria-hidden="true">
+																<i class="fas fa-times"></i>
+															</button>
+														</div>
+													</div>
+													<div class="card-body p-0">
+														<span><?php echo $this->session->flashdata('password_error'); ?></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<?php
+									}
+									if($this->session->flashdata('password_success')){
+										?>
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="alert card bg-success">
+													<div class="card-header p-0">
+														<h3 class="card-title"><i class="fas fa-check-circle"></i> Alert</h3>
+														<div class="card-tools">
+															<button type="button" class="btn btn-tool" data-dismiss="alert" aria-hidden="true">
+																<i class="fas fa-times"></i>
+															</button>
+														</div>
+													</div>
+													<div class="card-body p-0">
+														<span><?php echo $this->session->flashdata('password_success'); ?></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<?php
+									}
+								?>
+							<div class="row">
+								<div class="col-sm-12">
+									<label class="cat-title all-caps">Password Change</label>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>Current password</label>
+										<input type="password" class="form-control" placeholder="" required name="current_password">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>New password</label>
+										<input type="password" class="form-control" placeholder="" required name="new_password">
+									</div>
 								</div>
 								
-								<div class="col-sm-12">
-								
-									<label>Password Change</label>
-									<div class="form-group">
-										<label>Current password (leave blank to leave unchanged)</label>
-										<input type="password" class="form-control" placeholder="" name="current_password">
-									</div>
-									<div class="form-group">
-										<label>New password (leave blank to leave unchanged)</label>
-										<input type="password" class="form-control" placeholder="" name="new_password">
-									</div>
+								<div class="col-sm-6">
 									<div class="form-group">
 										<label>Confirm new password</label>
-										<input type="password" class="form-control" placeholder="" name="confirm_password">
+										<input type="password" class="form-control" placeholder="" required name="confirm_password">
 									</div>
 									<button type="submit" class="btn btn-flat btn-success">Save Changes</button>
 								</div>

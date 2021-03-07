@@ -14,4 +14,5 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:300,400,400i,700" rel="stylesheet">

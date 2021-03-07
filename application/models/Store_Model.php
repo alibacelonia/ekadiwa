@@ -31,12 +31,11 @@ class Store_Model extends CI_Model{
 		return $result;
 	}
 	
-	public function get_my_store_details($id)
+	public function get_my_store_details($data)
     {
-		
 		$query = $this->db->select('*')
 				->from('store')
-				->where('id',$id)
+				->where('owner',$data['id'])
 				->where('status','A')
 				->get();
 		
@@ -44,5 +43,11 @@ class Store_Model extends CI_Model{
 		return $result;
     }
 	
+	public function save_store_changes($id,$data)
+    {
+		$this->db->where('owner', $id);
+		$query = $this->db->update('store',$data);
+		return $query;
+    }
 	
 }
